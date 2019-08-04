@@ -5,31 +5,25 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "contacts")
-@IdClass(Contact.class)
 public class Contact implements Serializable {
+
     @Id
     @SequenceGenerator(name="identifier", sequenceName="contacts_id_seq", allocationSize=1)
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="identifier")
-    @Column(name="id")
     Long id;
 
-    @Id
     @Column(name="name")
     String name;
 
-    @Id
     @Column(name="address")
     String address;
 
-    @Id
     @Column(name="city")
     String city;
 
-    @Id
     @Column(name="phone")
     String phone;
 
-    @Id
     @Column(name="email")
     String email;
 

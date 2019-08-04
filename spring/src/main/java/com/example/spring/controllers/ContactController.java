@@ -30,12 +30,14 @@ public class ContactController {
 
     @RequestMapping(method=RequestMethod.GET, value="/contacts/{id}")
     public Optional<Contact> show(@PathVariable String id) {
-        return contactRepository.findById(id);
+        Long userId = Long.parseLong(id);
+        return contactRepository.findById(userId);
     }
 
     @RequestMapping(method=RequestMethod.PUT, value="/contacts/{id}")
     public Contact update(@PathVariable String id, @RequestBody Contact contact) {
-        Optional<Contact> optional = contactRepository.findById(id);
+        Long userId = Long.parseLong(id);
+        Optional<Contact> optional = contactRepository.findById(userId);
         Contact optionalContact = optional.get();
         if(contact.getName() != null)
             optionalContact.setName(contact.getName());
@@ -54,7 +56,8 @@ public class ContactController {
 
     @RequestMapping(method=RequestMethod.DELETE, value="/contacts/{id}")
     public String delete(@PathVariable String id) {
-        Optional<Contact> optional = contactRepository.findById(id);
+        Long userId = Long.parseLong(id);
+        Optional<Contact> optional = contactRepository.findById(userId);
         Contact optionalContact = optional.get();
         contactRepository.delete(optionalContact);
 
